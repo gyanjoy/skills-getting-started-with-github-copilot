@@ -37,7 +37,27 @@ document.addEventListener("DOMContentLoaded", () => {
               <strong>Participants:</strong>
               <span class="no-participants">No participants yet</span>
             </div>
-          `;
+        // Build participants section DOM
+        let participantsSection = document.createElement("div");
+        participantsSection.className = "participants-section";
+        const participantsLabel = document.createElement("strong");
+        participantsLabel.textContent = "Participants:";
+        participantsSection.appendChild(participantsLabel);
+
+        if (details.participants.length > 0) {
+          const ul = document.createElement("ul");
+          ul.className = "participants-list";
+          details.participants.forEach(email => {
+            const li = document.createElement("li");
+            li.textContent = email;
+            ul.appendChild(li);
+          });
+          participantsSection.appendChild(ul);
+        } else {
+          const noParticipants = document.createElement("span");
+          noParticipants.className = "no-participants";
+          noParticipants.textContent = "No participants yet";
+          participantsSection.appendChild(noParticipants);
         }
 
         activityCard.innerHTML = `
